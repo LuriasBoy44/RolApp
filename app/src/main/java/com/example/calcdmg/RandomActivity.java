@@ -24,7 +24,7 @@ public class RandomActivity extends AppCompatActivity {
     {
       String [] arrayTypes ={"Piedra","Papel","Tijera"};
       String [] arrayStats ={"PS","Ataque","Defensa","Velocidad"};
-      String [] arrayCards ={"Comodín","Ofrenda","Herramienta","Habilidad","Héroe"};
+      String [] arrayCards ={"Comodín","Hechizo","Herramienta","Habilidad","Héroe"};
       int [] arrayInt ={-5,-4,-3,-2,-1,0,1,2,3,4,5};
 
       Random r = new Random();

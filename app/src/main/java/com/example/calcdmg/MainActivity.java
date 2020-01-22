@@ -106,10 +106,10 @@ public class MainActivity extends AppCompatActivity {
             int hp= Integer.parseInt(valHp);
             int def= Integer.parseInt(valDef);
             int potency= powAtack(atkType,defType);
-            int  result= Math.round( hp-((atk*potency)/def));
+            int  result= Math.round(hp-((atk*potency)/def));
             calcAbsorcion(hp,result);
             if(result<=0)
-                msgFinal ="¡¡¡Rival debilitado!!!";
+                msgFinal ="¡¡¡Rival debilitado!!!" + " Bonus: "+ -(result);
                 else
                 msgFinal="Salud del rival final es: "+ result;
             txtResultado.setText(msgFinal);
