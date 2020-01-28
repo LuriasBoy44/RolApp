@@ -74,6 +74,7 @@ public class MainActivity extends AppCompatActivity {
         spnDef= findViewById(R.id.spn_def);
         spnAtk.setAdapter(adaptador);
         spnDef.setAdapter(adaptador);
+        ptAtk.requestFocus();
     }
     private void calcAbsorcion(int hpMax,int hp)
     {
@@ -106,13 +107,20 @@ public class MainActivity extends AppCompatActivity {
             int hp= Integer.parseInt(valHp);
             int def= Integer.parseInt(valDef);
             int potency= powAtack(atkType,defType);
-            int  result= Math.round(hp-((atk*potency)/def));
-            calcAbsorcion(hp,result);
-            if(result<=0)
-                msgFinal ="¡¡¡Rival debilitado!!!" + " Bonus: "+ -(result);
+            int  result= 0;//Math.round(hp-((atk*potency)/def));
+
+            if(atk==0 || def==0 || hp==0)
+                Toast.makeText(this,"Ningún Stat debe estar en cero",Toast.LENGTH_SHORT).show();
+            else
+            {
+                result= Math.round(hp-((atk*potency)/def));
+                calcAbsorcion(hp,result);
+                if(result<=0)
+                    msgFinal ="¡¡¡Rival debilitado!!!" + " Bonus: "+ -(result);
                 else
-                msgFinal="Salud del rival final es: "+ result;
-            txtResultado.setText(msgFinal);
+                    msgFinal="Salud del rival final es: "+ result;
+                txtResultado.setText(msgFinal);
+            }
         }
         else
             Toast.makeText(this,"Debe ingresar todos los Stats",Toast.LENGTH_SHORT).show();
