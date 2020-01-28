@@ -150,7 +150,7 @@
         android:onClick="invert"
         app:layout_constraintStart_toEndOf="@+id/textView"
         app:layout_constraintTop_toBottomOf="@+id/txt_atk"
-        app:srcCompat="@mipmap/invert"
-        tools:srcCompat="@mipmap/invert" />
+        app:srcCompat="@mipmap/iconfinder_refres"
+        tools:srcCompat="@mipmap/iconfinder_refres" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
