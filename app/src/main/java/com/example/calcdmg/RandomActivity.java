@@ -26,7 +26,7 @@ public class RandomActivity extends AppCompatActivity {
         String [] arrayTypes ={"Piedra","Papel","Tijera"};
         String [] arrayStats ={"PS","Ataque","Defensa","Velocidad"};
         String [] arrayCards ={"Comodín","Hechizo","Herramienta","Habilidad","Héroe"};
-        int [] arrayInt ={-5,-4,-3,-2,-1,0,1,2,3,4,5};
+        String [] arrayInt ={"-5","-4","-3","-2","-1","0","1","2","3","4","5"};
 
         Random r = new Random();
         int rand1 = r.nextInt(4 - 1) + 1;
@@ -34,10 +34,10 @@ public class RandomActivity extends AppCompatActivity {
         int rand3 = r.nextInt(12 - 1) + 1;
         int rand4= r.nextInt(6 - 1) + 1;
 
-        txtType.setText("Tipo: "+arrayTypes[--rand1]);
-        txtStat.setText("Stat: "+arrayStats[--rand2]);
-        txtQty.setText("Valor: "+arrayInt[--rand3]);
-        txtCard.setText("Tarjeta: "+arrayCards[--rand4]);
+        txtType.setText(arrayTypes[--rand1]);
+        txtStat.setText(arrayStats[--rand2]);
+        txtQty.setText(arrayInt[--rand3]);
+        txtCard.setText(arrayCards[--rand4]);
     }
     public void setRamdomValues(View v)
     {
