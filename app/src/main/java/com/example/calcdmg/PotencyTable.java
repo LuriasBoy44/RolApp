@@ -102,6 +102,10 @@ public class PotencyTable extends AppCompatActivity {
             pow2.setText(arrayValues[1]);
             pow1.setText(arrayValues[2]);
         }
-        catch (IOException e){}
+        catch (IOException e){
+            pow3.setText("5");
+            pow2.setText("3");
+            pow1.setText("1");
+        }
     }
 }
