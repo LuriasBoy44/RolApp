@@ -49,7 +49,7 @@ public class MainActivity extends AppCompatActivity {
         }
         if( R.id.itm2==itemId)
         {
-            Intent i = new Intent( MainActivity.this, RandomActivity.class);
+            Intent i = new Intent( MainActivity.this,CardActivity.class);
             i.putExtra("dato", "AZAR");
             startActivity(i);
             return false;

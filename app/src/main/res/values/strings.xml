@@ -18,7 +18,8 @@
     <string name="txt_ef">Eficaz</string>
     <string name="txt_pe">Poco Eficaz</string>
     <string name="txt_value">Valor:</string>
-    <string name="txt_type">Tipo:</string>
+    <string name="txt_type">Tipo</string>
     <string name="txt_card">Tarjeta:</string>
-    <string name="txt_stat">Stat:</string>
+    <string name="txt_stat">Caracteristicas</string>
+    <string name="txt_skill">Habilidad</string>
 </resources>
