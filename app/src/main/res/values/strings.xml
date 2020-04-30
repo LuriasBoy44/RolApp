@@ -4,8 +4,9 @@
     <string name="edt_hp">Pts. Salud</string>
     <string name="edt_ps">Pts. Defensa</string>
     <string name="txv_form">Salud-((Ataque*Potencia)/Defensa)</string>
-    <string name="txv_me">### Stats Atacante ###</string>
-    <string name="txv_vs">### Stats Rival ###</string>
+    <string name="txv_me">### Características Atacante ###</string>
+    <string name="txv_vs">### Características Rival ###</string>
+    <string name="chk_abs">Restaura 1/4 PS</string>
     <string name="btn_cal">CALCULAR</string>
     <string name="btn_clr">LIMPIAR</string>
     <string name="txt_svd">GUARDAR</string>
@@ -13,13 +14,15 @@
     <string name="txt_back">VOLVER</string>
     <string name="itm_1">Efectividad</string>
     <string name="itm_2">A 2</string>
-    <string name="txt_random">Azar</string>
+    <string name="txt_random">Nuevo</string>
+    <string name="txt_wild">Comodín</string>
     <string name="txt_se">Super Eficaz</string>
     <string name="txt_ef">Eficaz</string>
     <string name="txt_pe">Poco Eficaz</string>
     <string name="txt_value">Valor:</string>
     <string name="txt_type">Tipo</string>
     <string name="txt_card">Tarjeta:</string>
-    <string name="txt_stat">Caracteristicas</string>
+    <string name="txt_stat">Características</string>
     <string name="txt_skill">Habilidad</string>
+    <string name="txt_wildcard">### Comodín ###</string>
 </resources>

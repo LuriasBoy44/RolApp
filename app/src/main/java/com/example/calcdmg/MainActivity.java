@@ -7,6 +7,7 @@ import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.ArrayAdapter;
+import android.widget.CheckBox;
 import android.widget.EditText;
 import android.widget.Spinner;
 import android.widget.TextView;
@@ -19,7 +20,8 @@ public class MainActivity extends AppCompatActivity {
 
     private Spinner spnAtk,spnDef;
     private EditText ptAtk,ptDef,ptHp;
-    private TextView txtResultado,txtPow,txtAbsorb;
+    private TextView txtResultado,txtPow,txtAbsorb,txtBonus;
+    private CheckBox check_abs;
     String filename="basePotency.txt";
 
     @Override
@@ -54,6 +56,13 @@ public class MainActivity extends AppCompatActivity {
             startActivity(i);
             return false;
         }
+        if( R.id.itm3==itemId)
+        {
+            Intent i = new Intent( MainActivity.this,WildCardActivity.class);
+            i.putExtra("dato", "AZAR");
+            startActivity(i);
+            return false;
+        }
          return  super.onOptionsItemSelected(item);
 }
 
@@ -67,29 +76,31 @@ public class MainActivity extends AppCompatActivity {
         txtResultado= findViewById(R.id.txv_result);
         txtPow= findViewById(R.id.txv_pow);
         txtAbsorb= findViewById(R.id.txvAbs);
+        check_abs= findViewById(R.id.chk_abs);
         ptAtk= findViewById(R.id.txt_atk);
         ptHp= findViewById(R.id.txt_hp);
         ptDef= findViewById(R.id.txt_def);
+        txtBonus=findViewById(R.id.txv_Bonus);
         spnAtk= findViewById(R.id.spn_atk);
         spnDef= findViewById(R.id.spn_def);
         spnAtk.setAdapter(adaptador);
         spnDef.setAdapter(adaptador);
         ptAtk.requestFocus();
-    }
-    private void calcAbsorcion(int hpMax,int hp)
-    {
-        double quota= hp*0.25;
-        int  result=(int)Math.round(hp+quota );
-        String msg=quota+" + "+hp+" es: ";
 
-        if(hp>0) {
-            if (result > hpMax)
-                txtAbsorb.setText(msg+ hpMax);
-            else
-                txtAbsorb.setText(msg+ result);
-        }
+
+    }
+    private int  calcAbsorcion(int hpMax,int hp)
+    {
+        int  quota= hpMax/4;
+        int  result=Math.round(hp+quota );
+        String msg="1/4 de " + hpMax+" es: "+quota;
+
+        if(hp>0)
+            txtAbsorb.setText(msg);
         else
             txtAbsorb.setText("");
+
+        return (result > hpMax)?0:quota;
     }
 
     public void calcular(View v)
@@ -99,7 +110,8 @@ public class MainActivity extends AppCompatActivity {
         String valDef= ptDef.getText().toString();
         String atkType= spnAtk.getSelectedItem().toString();
         String defType= spnDef.getSelectedItem().toString();
-        String msgFinal="";
+        String msgFinal="",msgBonus;
+        boolean check=check_abs.isChecked();
 
         if(valAtk.length()>0 && valHp.length()>0 && valDef.length()>0)
         {
@@ -107,19 +119,32 @@ public class MainActivity extends AppCompatActivity {
             int hp= Integer.parseInt(valHp);
             int def= Integer.parseInt(valDef);
             int potency= powAtack(atkType,defType);
-            int result= 0;//Math.round(hp-((atk*potency)/def));
+            int result= 0, bonus=0;
 
             if(atk==0 || def==0 || hp==0)
                 Toast.makeText(this,"Ningún Stat debe estar en cero",Toast.LENGTH_SHORT).show();
             else
             {
                 result= Math.round(hp-((atk*potency)/def));
-                //calcAbsorcion(hp,result);
-                if(result<=0)
-                    msgFinal ="¡¡¡Rival debilitado!!!" + " Bonus: "+ -(result);
+
+                if(check)
+                    result+=calcAbsorcion(hp,result);
                 else
-                    msgFinal="Salud del rival final es: "+ result;
+                    txtAbsorb.setText("");
+
+                if(result==0) {
+                    bonus=-result;
+                    msgFinal = "¡¡¡Rival debilitado!!!";
+                }
+                else {
+                    bonus=hp-result;
+                    msgFinal = "Salud del rival final es: " + result;
+                }
+
+                msgBonus=(bonus==0)?"Sin Bono a ataque ":"Bono de Ataque es "+bonus;
+
                 txtResultado.setText(msgFinal);
+                txtBonus.setText(msgBonus);
             }
         }
         else
@@ -203,12 +228,15 @@ public class MainActivity extends AppCompatActivity {
     {
         String txtOriginal= getResources().getString(R.string.txv_form);
         txtResultado.setText(txtOriginal);
+        txtBonus.setText("");
         ptAtk.setText("");
         ptHp.setText("");
         ptDef.setText("");
         txtPow.setText("");
+        txtAbsorb.setText("");
         spnAtk.setSelection(0);
         spnDef.setSelection(0);
+        check_abs.setChecked(false);
     }
 
     public void invert(View v)
