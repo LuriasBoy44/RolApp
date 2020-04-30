@@ -72,7 +72,7 @@
         <TextView
             android:id="@+id/txvSkill"
             android:layout_width="700px"
-            android:layout_height="wrap_content"
+            android:layout_height="300px"
             android:textAlignment="center"
             android:textColor="#7CB342"
             android:textSize="20sp" />
